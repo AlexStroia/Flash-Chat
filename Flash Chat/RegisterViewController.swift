@@ -6,10 +6,11 @@
 //
 
 import UIKit
+import Firebase
 
 
 class RegisterViewController: UIViewController {
-
+    let segueIdentifier = "goToChat"
     
     //Pre-linked IBOutlets
 
@@ -32,12 +33,15 @@ class RegisterViewController: UIViewController {
 
         
         //TODO: Set up a new user on our Firbase database
-        
-        
-
-        
-        
+        guard let emailText = emailTextfield.text, let passwordText = passwordTextfield.text else { return }
+        //TODO: Log in the user
+        Auth.auth().createUser(withEmail: emailText, password: passwordText) { (user, error) in
+            if let error = error {
+                print("An error has occured: ", error)
+            } else {
+                print("Succes!")
+                self.performSegue(withIdentifier: self.segueIdentifier, sender: nil)
+            }
+        }
     } 
-    
-    
 }

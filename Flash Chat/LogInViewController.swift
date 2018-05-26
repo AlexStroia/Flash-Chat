@@ -10,7 +10,7 @@ import Firebase
 
 
 class LogInViewController: UIViewController {
-    let segueIdentifier = "goToChat"
+    
 
     //Textfields pre-linked with IBOutlets
     @IBOutlet var emailTextfield: UITextField!
@@ -28,15 +28,5 @@ class LogInViewController: UIViewController {
    
     @IBAction func logInPressed(_ sender: AnyObject) {
 
-        guard let emailText = emailTextfield.text, let passwordText = passwordTextfield.text else { return }
-        //TODO: Log in the user
-        Auth.auth().createUser(withEmail: emailText, password: passwordText) { (user, error) in
-            if let error = error {
-                print("An error has occured: ", error)
-            } else {
-                print("Succes!")
-                self.performSegue(withIdentifier: self.segueIdentifier, sender: nil)
-            }
-        }
     }
 }  
